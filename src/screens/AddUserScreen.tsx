@@ -20,6 +20,7 @@ import { addUser } from "../redux/userSlice";
 import { saveUsers, getUsers } from "../utils/storage";
 import CustomPicker from "../components/CustomPicker";
 import { styles } from "../constants/Style";
+import Colors from "../constants/Colors";
 
 export default function AddUserScreen({ navigation }: any) {
     const dispatch = useDispatch();
@@ -125,7 +126,7 @@ export default function AddUserScreen({ navigation }: any) {
                             {profileImage ? (
                                 <Image source={{ uri: profileImage }} style={styles.profilePreview} />
                             ) : (
-                                <Text style={{ color: '#4CAF50', fontSize: 40 }}>+</Text>
+                                <Text style={{ color: Colors.primary, fontSize: 40 }}>+</Text>
                             )}
                         </TouchableOpacity>
                         <Text style={styles.photoLabel}>Upload Profile Photo</Text>

@@ -2,17 +2,15 @@ import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
-  StyleSheet,
   TouchableOpacity,
   SafeAreaView,
   ActivityIndicator,
-  Image,
   Alert
 } from "react-native";
 import axios from "axios";
-import { saveUsers } from "../utils/storage"; // Assuming your storage helper
-import Colors from "../constants/Colors";
+import { saveUsers } from "../utils/storage"; 
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { styles } from "../constants/Style";
 
 export default function WelcomeScreen({ navigation }: any) {
   const [isSyncing, setIsSyncing] = useState(false);
@@ -29,7 +27,6 @@ export default function WelcomeScreen({ navigation }: any) {
     checkLogin();
   }, []);
 
-  // Sync users from API to Local Storage on Mount
   useEffect(() => {
     const syncInitialData = async () => {
       setIsSyncing(true);
@@ -87,96 +84,7 @@ export default function WelcomeScreen({ navigation }: any) {
             </>
           )}
         </View>
-
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F8F9FA',
-  },
-  content: {
-    flex: 1,
-    padding: 30,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  brandContainer: {
-    alignItems: 'center',
-    marginTop: 100,
-  },
-  logoPlaceholder: {
-    width: 100,
-    height: 100,
-    backgroundColor: '#E8F5E9',
-    borderRadius: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  logoIcon: {
-    fontSize: 50,
-  },
-  brandName: {
-    fontSize: 28,
-    fontWeight: '800',
-    color: '#2c3e50',
-    letterSpacing: 1,
-  },
-  tagline: {
-    fontSize: 14,
-    color: '#7f8c8d',
-    marginTop: 8,
-  },
-  buttonContainer: {
-    width: '100%',
-    gap: 15,
-  },
-  loginButton: {
-    backgroundColor: '#4CAF50',
-    padding: 18,
-    borderRadius: 15,
-    alignItems: 'center',
-    elevation: 4,
-    shadowColor: '#4CAF50',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-  },
-  loginButtonText: {
-    color: '#FFF',
-    fontSize: 16,
-    fontWeight: '700',
-  },
-  signupButton: {
-    backgroundColor: '#FFF',
-    padding: 18,
-    borderRadius: 15,
-    alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '#4CAF50',
-  },
-  signupButtonText: {
-    color: '#4CAF50',
-    fontSize: 16,
-    fontWeight: '700',
-  },
-  syncBox: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 10,
-  },
-  syncText: {
-    color: '#95a5a6',
-    fontSize: 14,
-  },
-  footerVersion: {
-    fontSize: 12,
-    color: '#bdc3c7',
-    marginBottom: 10,
-  }
-});

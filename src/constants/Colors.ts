@@ -17,7 +17,9 @@ const Colors = {
   readOnlyInput: '#7f8c8d',
   lightGreen: '#E8F5E9',
   lightRed: '#FFF9F9',
-  subText: '#636E72'
+  subText: '#636E72',
+  syncText: '#95a5a6',
+  footer: '#bdc3c7'
 };
 
 export default Colors;

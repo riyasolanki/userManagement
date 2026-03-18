@@ -14,16 +14,14 @@ import { useForm, Controller } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { launchImageLibrary } from 'react-native-image-picker';
 
-import { updateUser } from "../redux/userSlice"; // Import your action
-import { saveUsers, getUsers } from "../utils/storage"; // Import storage helpers
-import Colors from "../constants/Colors";
+import { updateUser } from "../redux/userSlice"; 
+import { saveUsers, getUsers } from "../utils/storage"; 
 import { api } from "../api/api";
 
 export default function EditUserScreen({ route, navigation }: any) {
   const dispatch = useDispatch();
   const { user } = route.params;
 
-  // State for profile image
   const [profileImage, setProfileImage] = useState(
     user.image || "https://dummyjson.com/icon/default/128"
   );
@@ -45,7 +43,7 @@ export default function EditUserScreen({ route, navigation }: any) {
     const result = await launchImageLibrary({
       mediaType: 'photo',
       quality: 0.8,
-      includeBase64: false, // keep false unless needed
+      includeBase64: false,
     });
 
     if (result.assets?.length) {
