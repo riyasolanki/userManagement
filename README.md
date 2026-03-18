@@ -1,84 +1,152 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
-
 # 📱 User Management App (React Native)
 
-A React Native mobile application for managing users with authentication, API integration, and form handling.
+A modern **React Native mobile application** for managing users with authentication, API integration, pagination, and offline support.
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
-- 🔐 Login Screen with validation
-- 📋 User List (with pagination)
-- 👤 User Detail Screen
-- ➕ Add / ✏️ Edit User
-- 🧠 State Management using Redux Toolkit
-- 🧭 React Navigation integration
-- ⚠️ Error handling & loading states
+* 🔐 Login Screen with validation
+* 📋 User List with **pagination (API-based)**
+* 👤 User Detail Screen
+* ➕ Add / ✏️ Edit User
+* 🧠 State Management using **Redux Toolkit**
+* 🧭 Navigation using **React Navigation**
+* ⚠️ Error handling & loading states
 
 ### ⭐ Bonus Features
-- 🖼️ Image Upload
-- 📡 Offline Caching
+
+* 🖼️ Image Upload
+* 📡 Offline Caching (Local Storage fallback)
 
 ---
 
 ## 🛠️ Tech Stack
 
-- React Native
-- TypeScript
-- Redux Toolkit
-- React Navigation
-- React Hook Form
-- Axios / Fetch API
+* React Native (CLI)
+* TypeScript
+* Redux Toolkit
+* React Navigation
+* React Hook Form
+* Axios
 
 ---
 
-## 📂 Folder Structure
+## 📂 Project Structure
 
-<img width="184" height="204" alt="image" src="https://github.com/user-attachments/assets/034a6a47-eb47-4904-97ff-648c81a2e056" />
+![Folder Structure](https://github.com/user-attachments/assets/034a6a47-eb47-4904-97ff-648c81a2e056)
 
-## 📸 Screenshots
+---
 
-<img width="800" height="427" alt="User Management" src="https://github.com/user-attachments/assets/dea1ac81-90c6-4010-a112-fd30e74a6b6b" />
+## 📸 App Screens
+
+![User Management](https://github.com/user-attachments/assets/dea1ac81-90c6-4010-a112-fd30e74a6b6b)
+
+---
 
 ## ⚙️ Setup Instructions
 
-### 1️⃣ Clone the repository
+### 1️⃣ Clone Repository
 
 ```bash
 git clone https://github.com/riyasolanki/userManagement.git
 cd userManagement
+```
 
-### 2️⃣ Install dependencies
+### 2️⃣ Install Dependencies
+
+```bash
 npm install
+```
 
-### 3️⃣ Run the app
-## Android
+### 3️⃣ Run Application
+
+#### ▶️ Android
+
+```bash
 npx react-native run-android
-## iOS
+```
+
+#### 🍎 iOS
+
+```bash
 cd ios
 pod install
 cd ..
 npx react-native run-ios
+```
+
+---
 
 ## 🔑 Test Credentials
+
+```txt
 Email: emily.johnson@x.dummyjson.com
 Password: emilyspass
+```
 
-## 📡 API Used
-- https://dummyjson.com/users
-- Pagination implemented using limit & skip
+---
 
-## 📦 Build
-## Android APK
+## 📡 API Integration
+
+* Base API: https://dummyjson.com/users
+* Pagination implemented using:
+
+  * `limit`
+  * `skip`
+
+---
+
+## 📦 Build APK
+
+```bash
 cd android
 ./gradlew assembleRelease
-path : android/app/build/outputs/apk/release/app-release.apk
+```
 
-## ❗ Error Handling
-- API error handling with alerts
-- Form validation using react-hook-form
+📍 Output path:
+
+```
+android/app/build/outputs/apk/release/app-release.apk
+```
+
+---
+
+## ⚠️ Error Handling
+
+* API failure handled with alerts
+* Form validation using React Hook Form
+* Input validation with proper error UI
+
+---
 
 ## 📡 Offline Support
-- Cached users stored locally
-- Fallback to local data when offline
+
+* Users cached locally
+* App works without internet (fallback mechanism)
+
+---
+
+## 🚀 Key Highlights
+
+* Clean architecture & reusable components
+* Scalable folder structure
+* Production-ready form handling
+* Smooth UX with validation & loaders
+
+---
+
+## 👩‍💻 Author
+
+**Riya Solanki**
+🔗 GitHub: https://github.com/riyasolanki
+
+---
+
+## 📌 Notes
+
+This project is built as part of a **technical assessment** and demonstrates:
+
+* Real-world app structure
+* API handling with pagination
+* Form validation & state management
