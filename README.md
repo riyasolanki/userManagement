@@ -23,7 +23,6 @@ A React Native mobile application for managing users with authentication, API in
 ### ⭐ Bonus Features
 - 🖼️ Image Upload
 - 📡 Offline Caching
-- 🧪 Unit Testing
 
 ---
 
