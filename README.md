@@ -38,3 +38,5 @@ A React Native mobile application for managing users with authentication, API in
 ---
 
 ## 📂 Folder Structure
+
+<img width="184" height="204" alt="image" src="https://github.com/user-attachments/assets/034a6a47-eb47-4904-97ff-648c81a2e056" />
