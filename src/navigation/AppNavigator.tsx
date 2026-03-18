@@ -1,6 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import SplashScreen from "../screens/SplashScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import AddUserScreen from "../screens/AddUserScreen";
 import LoginScreen from "../screens/LoginScreen";
@@ -13,6 +14,9 @@ const Stack = createNativeStackNavigator();
 export default function AppNavigator() {
     return (
         <Stack.Navigator>
+            <Stack.Screen name="Splash" component={SplashScreen}
+                options={{ headerShown: false }}
+            />
             <Stack.Screen name="Welcome" component={WelcomeScreen}
                 options={{ headerShown: false }}
             />

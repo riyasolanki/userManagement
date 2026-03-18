@@ -1,21 +1,21 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity, ScrollView, StyleSheet, SafeAreaView, StatusBar } from "react-native";
 import Colors from "../constants/Colors";
+import { useSelector } from "react-redux";
 
 export default function UserDetailScreen({ route, navigation }: any) {
 
-  const [user, setUser] = useState(route.params.user);
-  // const { user } = route.params;
-
-  // useEffect(() => {
-  //   console.log("User ::", JSON.stringify(user))
-  // },[])
+  const { id } = route.params.user;
+  const user = useSelector((state: any) =>
+    state.users.users.find((u: any) => u.id === id)
+  );
+  // const [user, setUser] = useState(route.params.user);
 
   const handleExitPress = () => {
     navigation.navigate("EditUser", {
-      user, onUpdate: (updatedUser: any) => setUser(updatedUser)
+      user,
     });
-  }
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>

@@ -15,6 +15,7 @@ import { fetchUsers, setUsers } from "../redux/userSlice";
 import { getUsers, clearStorage } from "../utils/storage"; // Assume clearStorage handles logout
 import UserCard from "./UserCard";
 import Colors from "../constants/Colors";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function UserListScreen({ navigation }: any) {
   const dispatch = useDispatch();
@@ -48,7 +49,8 @@ export default function UserListScreen({ navigation }: any) {
         style: "destructive", 
         onPress: async () => {
           await clearStorage();
-          navigation.replace("Login"); // Redirect to login screen
+          await AsyncStorage.removeItem("@logged_in_user");
+          navigation.replace("Welcome"); // Redirect to login screen
         } 
       },
     ]);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -24,7 +24,13 @@ export default function EditUserScreen({ route, navigation }: any) {
   const { user } = route.params;
 
   // State for profile image
-  const [profileImage, setProfileImage] = useState<string | null>(user.image);
+  const [profileImage, setProfileImage] = useState(
+    user.image || "https://dummyjson.com/icon/default/128"
+  );
+
+  useEffect(() => {
+    console.log("Users:: ", user)
+  }, [])
 
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
@@ -39,29 +45,28 @@ export default function EditUserScreen({ route, navigation }: any) {
     const result = await launchImageLibrary({
       mediaType: 'photo',
       quality: 0.8,
+      includeBase64: false, // keep false unless needed
     });
 
-    if (result.assets && result.assets.length > 0) {
-      setProfileImage(result.assets[0].uri || null);
+    if (result.assets?.length) {
+      const uri = result.assets[0].uri;
+
+      if (uri) {
+        setProfileImage(uri);
+      }
     }
   };
 
   const onSubmit = async (data: any) => {
     try {
-      // 1. Create the updated user object
       const updatedUserData = {
         ...user,
         ...data,
-        image: profileImage
+        image: profileImage,
       };
 
-      // 2. Mock API Call
-      await api.put(`users/${user.id}`, updatedUserData);
-
-      // 3. Update Redux Store (Reflects changes in User List)
       dispatch(updateUser(updatedUserData));
 
-      // 4. Update Local Storage for offline persistence
       const existingUsers = await getUsers();
       const index = existingUsers.findIndex((u: any) => u.id === user.id);
 
@@ -70,15 +75,17 @@ export default function EditUserScreen({ route, navigation }: any) {
         await saveUsers(existingUsers);
       }
 
-      // 5. Update Detail Screen if callback exists
-      if (route.params?.onUpdate) {
-        route.params.onUpdate(updatedUserData);
+      try {
+        await api.put(`users/${user.id}`, updatedUserData);
+      } catch (apiError) {
+        console.log("API Update skipped/failed (likely a local ID):", apiError);
       }
 
       Alert.alert("Success", "Profile updated successfully");
       navigation.goBack();
     } catch (error) {
-      Alert.alert("Error", "Failed to update user");
+      console.error("Critical Update Error:", error);
+      Alert.alert("Error", "Failed to update user locally");
     }
   };
 
@@ -101,7 +108,8 @@ export default function EditUserScreen({ route, navigation }: any) {
         <View style={styles.imageSection}>
           <TouchableOpacity onPress={pickImage} style={styles.imageWrapper}>
             <Image
-              source={{ uri: profileImage || "https://dummyjson.com/icon/default/128" }}
+              key={profileImage}
+              source={{ uri: profileImage }}
               style={styles.profileImage}
             />
             <View style={styles.editBadge}>
@@ -131,7 +139,7 @@ export default function EditUserScreen({ route, navigation }: any) {
             style={[styles.input, styles.disabledInput, { height: 'auto', minHeight: 60 }]}
             value={`${user.company?.name}\n${user.company?.title} • ${user.company?.department}`}
             editable={false}
-            multiline={true} // Needed to support the new line (\n)
+            multiline={true} 
           />
         </View>
 

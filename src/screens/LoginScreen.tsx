@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
-import { 
-    View, 
-    Alert, 
-    Text, 
-    StyleSheet, 
-    SafeAreaView, 
-    StatusBar, 
-    KeyboardAvoidingView, 
-    Platform, 
-    TouchableOpacity 
+import React, { useEffect, useState } from "react";
+import {
+    View,
+    Alert,
+    Text,
+    StyleSheet,
+    SafeAreaView,
+    StatusBar,
+    KeyboardAvoidingView,
+    Platform,
+    TouchableOpacity
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { setUsers } from "../redux/userSlice";
@@ -19,36 +19,40 @@ import CustomInput from "../components/CustomTextInput";
 import CustomButton from "../components/CustomButton";
 import Colors from "../constants/Colors";
 import { styles } from "../constants/Style";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function LoginScreen({ navigation }: any) {
     const dispatch = useDispatch();
     const { users } = useSelector((state: any) => state.users);
+    const [loading, setLoading] = useState(true);
 
-    // ✅ React Hook Form
     const {
         control,
         handleSubmit,
         formState: { errors },
     } = useForm({
-        mode: "onTouched", // 👈 same UX as AddUser
+        mode: "onTouched",
         defaultValues: {
             email: "",
             password: "",
         },
     });
 
+  
+
     useEffect(() => {
+        console.log("Loaded Users:", users);
         const loadLocalUsers = async () => {
             const localData = await getUsers();
-            if (localData && localData.length > 0) {
-                dispatch(setUsers(localData));
-            }
+
+            dispatch(setUsers(localData || []));
+            setLoading(false);
         };
+
         loadLocalUsers();
     }, []);
 
-    // ✅ Login Logic
-    const handleLogin = (data: any) => {
+    const handleLogin = async (data: any) => {
         const user = users.find(
             (u: any) =>
                 u.email.toLowerCase() === data.email.trim().toLowerCase() &&
@@ -56,32 +60,47 @@ export default function LoginScreen({ navigation }: any) {
         );
 
         if (user) {
+            await AsyncStorage.setItem("@logged_in_user", JSON.stringify(user));
+
             navigation.replace("UserList");
         } else {
             Alert.alert("Login Failed", "Invalid email or password.");
         }
     };
+    // const handleLogin = (data: any) => {
+    //     const user = users.find(
+    //         (u: any) =>
+    //             u.email.toLowerCase() === data.email.trim().toLowerCase() &&
+    //             u.password === data.password
+    //     );
+
+    //     if (user) {
+    //         navigation.replace("UserList");
+    //     } else {
+    //         Alert.alert("Login Failed", "Invalid email or password.");
+    //     }
+    // };
 
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle="dark-content" />
-            
+
             {/* Top Navigation Bar */}
             <View style={styles.topBar}>
-                <TouchableOpacity 
-                    style={styles.backButton} 
+                <TouchableOpacity
+                    style={styles.backButton}
                     onPress={() => navigation.goBack()}
                 >
                     <Text style={styles.backButtonText}>← Back</Text>
                 </TouchableOpacity>
             </View>
 
-            <KeyboardAvoidingView 
+            <KeyboardAvoidingView
                 behavior={Platform.OS === "ios" ? "padding" : "height"}
                 style={{ flex: 1 }}
             >
                 <View style={styles.innerContainer}>
-                    
+
                     {/* Header */}
                     <View style={styles.headerSection}>
                         <Text style={styles.brandText}>User Management</Text>
@@ -166,8 +185,8 @@ export default function LoginScreen({ navigation }: any) {
                                 onPress={handleSubmit(handleLogin)}
                                 style={styles.loginBtn}
                             />
-                            
-                            <TouchableOpacity 
+
+                            <TouchableOpacity
                                 style={styles.secondaryBtn}
                                 onPress={() => navigation.navigate("AddUser")}
                             >

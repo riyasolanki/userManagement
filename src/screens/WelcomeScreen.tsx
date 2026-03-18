@@ -1,20 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { 
-  View, 
-  Text, 
-  StyleSheet, 
-  TouchableOpacity, 
-  SafeAreaView, 
-  ActivityIndicator, 
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  SafeAreaView,
+  ActivityIndicator,
   Image,
-  Alert 
+  Alert
 } from "react-native";
 import axios from "axios";
 import { saveUsers } from "../utils/storage"; // Assuming your storage helper
 import Colors from "../constants/Colors";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function WelcomeScreen({ navigation }: any) {
   const [isSyncing, setIsSyncing] = useState(false);
+
+  useEffect(() => {
+    const checkLogin = async () => {
+      const user = await AsyncStorage.getItem("@logged_in_user");
+
+      if (user) {
+        navigation.replace("UserList");
+      }
+    };
+
+    checkLogin();
+  }, []);
 
   // Sync users from API to Local Storage on Mount
   useEffect(() => {
@@ -39,7 +52,7 @@ export default function WelcomeScreen({ navigation }: any) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        
+
         {/* Branding Section */}
         <View style={styles.brandContainer}>
           <View style={styles.logoPlaceholder}>
@@ -58,14 +71,14 @@ export default function WelcomeScreen({ navigation }: any) {
             </View>
           ) : (
             <>
-              <TouchableOpacity 
+              <TouchableOpacity
                 style={styles.loginButton}
                 onPress={() => navigation.navigate("Login")}
               >
                 <Text style={styles.loginButtonText}>Login to System</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity 
+              <TouchableOpacity
                 style={styles.signupButton}
                 onPress={() => navigation.navigate("AddUser")}
               >
