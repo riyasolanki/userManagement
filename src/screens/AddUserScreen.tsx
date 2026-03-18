@@ -121,8 +121,8 @@ export default function AddUserScreen({ navigation }: any) {
                 <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
 
                     {/* Photo Container */}
-                    <View style={styles.photoContainer}>
-                        <TouchableOpacity onPress={pickImage} style={styles.imageWrapper}>
+                    <View style={styles.photoContainer1}>
+                        <TouchableOpacity onPress={pickImage} style={styles.imageWrapper1}>
                             {profileImage ? (
                                 <Image source={{ uri: profileImage }} style={styles.profilePreview} />
                             ) : (

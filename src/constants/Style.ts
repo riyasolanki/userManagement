@@ -63,6 +63,18 @@ export const styles = StyleSheet.create({
     inputGroup: {
         marginBottom: 15
     },
+    photoContainer1: { alignItems: 'center', marginBottom: 20 },
+    imageWrapper1: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        backgroundColor: '#E8F5E9',
+        justifyContent: 'center',
+        alignItems: 'center',
+        overflow: 'hidden',
+        borderWidth: 2,
+        borderColor: Colors.primary,
+    },
     label: {
         fontSize: 11,
         color: Colors.label,
