@@ -40,7 +40,8 @@ A modern **React Native mobile application** for managing users with authenticat
 
 ## 📸 App Screens
 
-![User Management](https://github.com/user-attachments/assets/dea1ac81-90c6-4010-a112-fd30e74a6b6b)
+<img width="800" height="600" alt="User Management (1)" src="https://github.com/user-attachments/assets/d053f37f-38c6-41da-ad61-70f8608bdbd0" />
+
 
 ---
 
