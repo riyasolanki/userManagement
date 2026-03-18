@@ -136,7 +136,7 @@ export default function AddUserScreen({ navigation }: any) {
                     <View style={styles.row}>
                         <View style={styles.halfInput}>
                             <Text style={styles.label}>First Name</Text>
-                            <Controller control={control} name="firstName" rules={{ required: "Required" }} render={({ field: { onChange, value } }) => (
+                            <Controller control={control} name="firstName" rules={{ required: "First Name Required" }} render={({ field: { onChange, value } }) => (
                                 <View>
                                     <TextInput style={[styles.input, errors.firstName && styles.inputError]} value={value} onChangeText={onChange} placeholder="Riya" />
                                     {errors.firstName && <Text style={styles.errorText}>{errors.firstName.message}</Text>}
@@ -145,7 +145,7 @@ export default function AddUserScreen({ navigation }: any) {
                         </View>
                         <View style={styles.halfInput}>
                             <Text style={styles.label}>Last Name</Text>
-                            <Controller control={control} name="lastName" rules={{ required: "Required" }} render={({ field: { onChange, value } }) => (
+                            <Controller control={control} name="lastName" rules={{ required: "Last Name Required" }} render={({ field: { onChange, value } }) => (
                                 <View>
                                     <TextInput style={[styles.input, errors.lastName && styles.inputError]} value={value} onChangeText={onChange} placeholder="Solanki" />
                                     {errors.lastName && <Text style={styles.errorText}>{errors.lastName.message}</Text>}
@@ -182,7 +182,7 @@ export default function AddUserScreen({ navigation }: any) {
                     <View style={styles.row}>
                         <View style={styles.halfInput}>
                             <Text style={styles.label}>Username</Text>
-                            <Controller control={control} name="username" rules={{ required: "Required" }} render={({ field: { onChange, value } }) => (
+                            <Controller control={control} name="username" rules={{ required: "Username Required" }} render={({ field: { onChange, value } }) => (
                                 <View>
                                     <TextInput style={[styles.input, errors.username && styles.inputError]} value={value} onChangeText={onChange} placeholder="riya_s" autoCapitalize="none" />
                                     {errors.username && <Text style={styles.errorText}>{errors.username.message}</Text>}
@@ -204,7 +204,7 @@ export default function AddUserScreen({ navigation }: any) {
 
                     <View style={styles.inputGroup}>
                         <Text style={styles.label}>Password</Text>
-                        <Controller control={control} name="password" rules={{ required: "Required", minLength: { value: 6, message: "Min 6 chars" } }} render={({ field: { onChange, value } }) => (
+                        <Controller control={control} name="password" rules={{ required: "Password Required", minLength: { value: 6, message: "Min 6 chars" } }} render={({ field: { onChange, value } }) => (
                             <View>
                                 <TextInput style={[styles.input, errors.password && styles.inputError]} value={value} onChangeText={onChange} placeholder="••••••••" secureTextEntry />
                                 {errors.password && <Text style={styles.errorText}>{errors.password.message}</Text>}
@@ -216,7 +216,7 @@ export default function AddUserScreen({ navigation }: any) {
                     <View style={styles.row}>
                         <View style={styles.thirdInput}>
                             <Text style={styles.label}>Birth Date</Text>
-                            <Controller control={control} name="birthDate" rules={{ required: "Required" }} render={({ field: { value } }) => (
+                            <Controller control={control} name="birthDate" rules={{ required: "Birthdate Required" }} render={({ field: { value } }) => (
                                 <View>
                                     <TouchableOpacity onPress={() => setDatePickerVisibility(true)} style={[styles.pickerTrigger, errors.birthDate && styles.inputError]}>
                                         <Text style={value ? styles.pickerText : styles.placeholderText}>{value || "YYYY-MM-DD"}</Text>
@@ -231,7 +231,7 @@ export default function AddUserScreen({ navigation }: any) {
                         </View>
                         <View style={styles.thirdInput}>
                             <Text style={styles.label}>Gender</Text>
-                            <Controller control={control} name="gender" rules={{ required: "Required" }} render={({ field: { value } }) => (
+                            <Controller control={control} name="gender" rules={{ required: "Gender Required" }} render={({ field: { value } }) => (
                                 <View>
                                     <TouchableOpacity onPress={() => setPickerType('gender')} style={[styles.pickerTrigger, errors.gender && styles.inputError]}>
                                         <Text style={value ? styles.pickerText : styles.placeholderText}>{value || "Select"}</Text>
@@ -250,7 +250,7 @@ export default function AddUserScreen({ navigation }: any) {
                     {/* NEW: University Field */}
                     <View style={styles.inputGroup}>
                         <Text style={styles.label}>University</Text>
-                        <Controller control={control} name="university" rules={{ required: "Required" }} render={({ field: { onChange, value } }) => (
+                        <Controller control={control} name="university" rules={{ required: "University Required" }} render={({ field: { onChange, value } }) => (
                             <View>
                                 <TextInput style={[styles.input, errors.university && styles.inputError]} value={value} onChangeText={onChange} placeholder="Northeastern University" />
                                 {errors.university && <Text style={styles.errorText}>{errors.university.message}</Text>}
@@ -260,7 +260,7 @@ export default function AddUserScreen({ navigation }: any) {
 
                     <View style={styles.inputGroup}>
                         <Text style={styles.label}>Company Name</Text>
-                        <Controller control={control} name="companyName" rules={{ required: "Required" }} render={({ field: { onChange, value } }) => (
+                        <Controller control={control} name="companyName" rules={{ required: "Company Name Required" }} render={({ field: { onChange, value } }) => (
                             <View>
                                 <TextInput style={[styles.input, errors.companyName && styles.inputError]} value={value} onChangeText={onChange} placeholder="Pvt Ltd" />
                                 {errors.companyName && <Text style={styles.errorText}>{errors.companyName.message}</Text>}
@@ -271,7 +271,7 @@ export default function AddUserScreen({ navigation }: any) {
                     <View style={styles.row}>
                         <View style={styles.halfInput}>
                             <Text style={styles.label}>Job Title</Text>
-                            <Controller control={control} name="title" rules={{ required: "Required" }} render={({ field: { onChange, value } }) => (
+                            <Controller control={control} name="title" rules={{ required: "Job Title Required" }} render={({ field: { onChange, value } }) => (
                                 <View>
                                     <TextInput style={[styles.input, errors.title && styles.inputError]} value={value} onChangeText={onChange} placeholder="Developer" />
                                     {errors.title && <Text style={styles.errorText}>{errors.title.message}</Text>}
@@ -280,7 +280,7 @@ export default function AddUserScreen({ navigation }: any) {
                         </View>
                         <View style={styles.halfInput}>
                             <Text style={styles.label}>Department</Text>
-                            <Controller control={control} name="department" rules={{ required: "Required" }} render={({ field: { onChange, value } }) => (
+                            <Controller control={control} name="department" rules={{ required: "Department Required" }} render={({ field: { onChange, value } }) => (
                                 <View>
                                     <TextInput style={[styles.input, errors.department && styles.inputError]} value={value} onChangeText={onChange} placeholder="Software" />
                                     {errors.department && <Text style={styles.errorText}>{errors.department.message}</Text>}
@@ -296,21 +296,24 @@ export default function AddUserScreen({ navigation }: any) {
                     <View style={styles.row}>
                         <View style={styles.thirdInput}>
                             <Text style={styles.label}>Height (cm)</Text>
-                            <Controller control={control} name="height" render={({ field: { onChange, value } }) => (
-                                <TextInput style={styles.input} value={value} onChangeText={onChange} placeholder="170" keyboardType="numeric" />
+                            <Controller control={control} name="height" rules={{ required: "Height Required" }} render={({ field: { onChange, value } }) => (
+                                <TextInput style={[styles.input, errors.height && styles.inputError]} value={value} onChangeText={onChange} placeholder="170" keyboardType="numeric" />
                             )} />
+                             {errors.height && <Text style={styles.errorText}>{errors.height.message}</Text>}
                         </View>
                         <View style={styles.thirdInput}>
                             <Text style={styles.label}>Weight (kg)</Text>
-                            <Controller control={control} name="weight" render={({ field: { onChange, value } }) => (
-                                <TextInput style={styles.input} value={value} onChangeText={onChange} placeholder="65" keyboardType="numeric" />
+                            <Controller control={control} name="weight" rules={{ required: "Weight Required" }} render={({ field: { onChange, value } }) => (
+                                <TextInput style={[styles.input, errors.weight && styles.inputError]} value={value} onChangeText={onChange} placeholder="65" keyboardType="numeric" />
                             )} />
+                            {errors.weight && <Text style={styles.errorText}>{errors.weight.message}</Text>}
                         </View>
                         <View style={styles.thirdInput}>
                             <Text style={styles.label}>Blood</Text>
-                            <Controller control={control} name="bloodGroup" render={({ field: { onChange, value } }) => (
-                                <TextInput style={styles.input} value={value} onChangeText={onChange} placeholder="O+" autoCapitalize="characters" />
+                            <Controller control={control} name="bloodGroup" rules={{ required: "Blood Group Required" }} render={({ field: { onChange, value } }) => (
+                                <TextInput style={[styles.input, errors.bloodGroup && styles.inputError]} value={value} onChangeText={onChange} placeholder="O+" autoCapitalize="characters" />
                             )} />
+                            {errors.bloodGroup && <Text style={styles.errorText}>{errors.bloodGroup.message}</Text>}
                         </View>
                     </View>
 
